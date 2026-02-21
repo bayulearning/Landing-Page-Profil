@@ -1,0 +1,219 @@
+:root {
+  --primary-color: #2563eb;
+  --text-main: #f3f4f6; /* Diubah ke terang karena bg-dark */
+  --text-muted: #9ca3af;
+  --bg-dark: #1f2225;
+  --nav-height: 80px; /* Variabel untuk konsistensi */
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-dark);
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+  background-attachment: fixed;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.432), rgba(0, 0, 0, 0.596)),
+    url("../src/pexels-photo-1133501.webp");
+  background-size: cover;
+}
+
+/* --- MODERN NAVBAR VARIABLES --- */
+:root {
+  --nav-bg: rgba(15, 23, 42, 0.7); /* Deep Navy Transparan */
+  --accent: #3b82f6; /* Biru terang untuk aksen */
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+  background: var(--nav-bg);
+  backdrop-filter: blur(15px) saturate(180%); /* Efek kaca lebih kuat */
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 1000;
+}
+
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.nav-logo span {
+  color: var(--accent);
+}
+
+/* --- HAMBURGER ICON STYLES --- */
+.menu-checkbox {
+  display: none; /* Sembunyikan checkbox */
+}
+
+.hamburger {
+  display: none; /* Sembunyikan di desktop */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+/* --- NAV LINKS DEFAULT (DESKTOP) --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* --- CONTAINER & LAYOUT --- */
+.container {
+  width: 90%; /* Menggunakan % agar fleksibel di HP */
+  max-width: 1200px;
+  margin: 0 auto; /* Tengah secara horizontal */
+  padding-top: calc(var(--nav-height) + 40px); /* Agar tidak tertimpa navbar */
+  padding-bottom: 60px;
+}
+
+.content-profil {
+  display: flex;
+  flex-direction: column; /* Mobile first: Atas-Bawah */
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.content-profil img {
+  width: 100%;
+  max-width: 300px; /* Batas maksimal ukuran foto */
+  height: auto;
+  border-radius: 30%;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6vw, 3.5rem); /* Lebih dinamis */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+h5 {
+  font-size: clamp(0.6rem, 3vw, 1.5rem); /* Lebih dinamis */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: normal;
+}
+
+p {
+  color: var(--text-muted);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+/* --- RESPONSIVE (TABLET & DESKTOP) --- */
+@media (min-width: 768px) {
+  .content-profil {
+    flex-direction: row; /* Berubah jadi 2 kolom */
+    text-align: left;
+    justify-content: space-between;
+  }
+
+  .content-profil img {
+    order: 2; /* Gambar pindah ke kanan */
+    max-width: 400px;
+  }
+
+  .teks {
+    flex: 1;
+    order: 1; /* Teks di kiri */
+  }
+}
+
+/* --- UTILS --- */
+.nav-links {
+  display: none; /* Sembunyikan menu di HP (butuh hamburger menu) */
+}
+
+@media (min-width: 1024px) {
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+}
+
+/* Sembunyikan checkbox secara absolut */
+.menu-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Sembunyi di kanan luar layar */
+    width: 280px; /* Beri lebar yang pasti */
+    height: 100vh;
+    background: #1a1d21; /* Warna solid agar tidak transparan */
+    display: flex;
+    flex-direction: column;
+    padding: 100px 40px; /* Beri ruang agar tidak mentok ke atas */
+    gap: 20px;
+    /* Quat Out: Halus dan profesional */
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 999; /* Pastikan di bawah ikon hamburger (1001) tapi di atas body */
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* LOGIKA UTAMA: Jika checkbox dicentang, pindahkan menu ke kanan: 0 */
+  .menu-checkbox:checked ~ .nav-links {
+    right: 0 !important; /* Gunakan !important jika ada bentrokan style lain */
+  }
+
+  /* Menampilkan hamburger di atas menu saat terbuka */
+  .hamburger {
+    display: flex;
+    z-index: 1001; /* Harus paling tinggi agar tetap bisa diklik untuk menutup */
+  }
+}
