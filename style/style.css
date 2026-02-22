@@ -182,7 +182,7 @@ p {
 
 .isi-task img {
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
 }
 
 .teks h3 {
@@ -209,7 +209,6 @@ p {
   }
 
   .isi-task {
-    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
@@ -376,9 +375,4 @@ body {
   max-width: 1100px;
   margin: 80px auto 0;
   padding: 30px 20px;
-}
-
-.isi-task,
-.teks {
-  flex-wrap: wrap;
 }
