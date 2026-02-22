@@ -1,12 +1,19 @@
+/* ================= ROOT VARIABLES ================= */
 :root {
   --primary-color: #2563eb;
-  --text-main: #f3f4f6; /* Diubah ke terang karena bg-dark */
+  --text-main: #f3f4f6;
   --text-muted: #9ca3af;
   --bg-dark: #1f2225;
-  --nav-height: 80px; /* Variabel untuk konsistensi */
+
+  --nav-height: 75px;
+  --nav-bg: rgba(15, 23, 42, 0.7);
+  --accent: #3b82f6;
+  --glass-border: rgba(255, 255, 255, 0.08);
+
   --transition: all 0.3s ease;
 }
 
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -18,33 +25,30 @@ body {
   line-height: 1.6;
   color: var(--text-main);
   background-color: var(--bg-dark);
-  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
-  background-attachment: fixed;
+
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.432), rgba(0, 0, 0, 0.596)),
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
     url(../src/background.webp);
+
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* FIX agar aman di HP */
 }
 
-/* --- MODERN NAVBAR VARIABLES --- */
-:root {
-  --nav-bg: rgba(15, 23, 42, 0.7); /* Deep Navy Transparan */
-  --accent: #3b82f6; /* Biru terang untuk aksen */
-  --glass-border: rgba(255, 255, 255, 0.08);
-}
-
+/* ================= NAVBAR ================= */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 75px;
+  height: var(--nav-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 8%;
+  padding: 0 5%;
   background: var(--nav-bg);
-  backdrop-filter: blur(15px) saturate(180%); /* Efek kaca lebih kuat */
+  backdrop-filter: blur(15px) saturate(180%);
   border-bottom: 1px solid var(--glass-border);
   z-index: 1000;
 }
@@ -54,20 +58,21 @@ body {
   font-weight: 800;
   color: #fff;
   text-decoration: none;
-  letter-spacing: -1px;
 }
 
 .nav-logo span {
   color: var(--accent);
 }
 
-/* --- HAMBURGER ICON STYLES --- */
+/* ================= HAMBURGER ================= */
 .menu-checkbox {
-  display: none; /* Sembunyikan checkbox */
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hamburger {
-  display: none; /* Sembunyikan di desktop */
+  display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
@@ -75,26 +80,25 @@ body {
 }
 
 .hamburger span {
-  display: block;
   width: 28px;
   height: 3px;
   background: #fff;
   border-radius: 10px;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
-/* --- NAV LINKS DEFAULT (DESKTOP) --- */
+/* ================= NAV LINKS ================= */
 .nav-links {
+  list-style: none;
   display: flex;
   align-items: center;
-  list-style: none;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .nav-links a {
   color: #cbd5e1;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
   transition: var(--transition);
 }
@@ -103,18 +107,19 @@ body {
   color: #fff;
 }
 
-/* --- CONTAINER & LAYOUT --- */
+/* ================= CONTAINER ================= */
 .container {
-  width: 90%; /* Menggunakan % agar fleksibel di HP */
+  width: 90%;
   max-width: 1200px;
-  margin: 0 auto; /* Tengah secara horizontal */
-  padding-top: calc(var(--nav-height) + 40px); /* Agar tidak tertimpa navbar */
+  margin: 0 auto;
+  padding-top: calc(var(--nav-height) + 40px);
   padding-bottom: 60px;
 }
 
+/* ================= PROFIL ================= */
 .content-profil {
   display: flex;
-  flex-direction: column; /* Mobile first: Atas-Bawah */
+  flex-direction: column; /* MOBILE FIRST */
   align-items: center;
   text-align: center;
   gap: 40px;
@@ -122,98 +127,229 @@ body {
 
 .content-profil img {
   width: 100%;
-  max-width: 300px; /* Batas maksimal ukuran foto */
-  height: auto;
+  max-width: 280px;
   border-radius: 30%;
   object-fit: cover;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* ================= TYPOGRAPHY ================= */
 h1 {
-  font-size: clamp(2.2rem, 6vw, 3.5rem); /* Lebih dinamis */
-  line-height: 1.1;
+  font-size: clamp(2rem, 6vw, 3.5rem);
   margin-bottom: 1rem;
-  color: #fff;
 }
 
 h5 {
-  font-size: clamp(0.6rem, 3vw, 1.5rem); /* Lebih dinamis */
-  line-height: 1.1;
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
   margin-bottom: 1rem;
-  color: #fff;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 p {
   color: var(--text-muted);
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
 }
 
-/* --- RESPONSIVE (TABLET & DESKTOP) --- */
+/* ================= TASK SECTION ================= */
+.content-task {
+  margin-top: 80px;
+  background-color: #1a1d21c2;
+  border-radius: 30px;
+  padding: 30px;
+}
+
+.header-task {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.isi-task {
+  display: flex;
+  flex-direction: column; /* MOBILE FIRST */
+  gap: 40px;
+  align-items: center;
+  text-align: center;
+}
+
+.isi-task img {
+  width: 100%;
+  max-width: 350px;
+}
+
+.teks h3 {
+  font-size: 1.8rem;
+}
+
+.teks h4 {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+/* ================= TABLET ================= */
 @media (min-width: 768px) {
   .content-profil {
-    flex-direction: row; /* Berubah jadi 2 kolom */
+    flex-direction: row;
     text-align: left;
     justify-content: space-between;
   }
 
   .content-profil img {
-    order: 2; /* Gambar pindah ke kanan */
+    order: 2;
+    max-width: 350px;
+  }
+
+  .isi-task {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 60px;
+  }
+
+  .isi-task img {
     max-width: 400px;
   }
-
-  .teks {
-    flex: 1;
-    order: 1; /* Teks di kiri */
-  }
 }
 
-/* --- UTILS --- */
-.nav-links {
-  display: none; /* Sembunyikan menu di HP (butuh hamburger menu) */
+.daftar-ayat {
+  list-style: none;
+  padding-left: 0;
 }
 
-@media (min-width: 1024px) {
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-  }
+.daftar-ayat li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 15px;
+  line-height: 1.7;
 }
 
-/* Sembunyikan checkbox secara absolut */
-.menu-checkbox {
+.daftar-ayat li::before {
+  content: "•";
   position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  left: 0;
+  color: #3b82f6;
+  font-size: 1.2rem;
 }
 
+/* ================= CONTACT SECTION ================= */
+.contact-section {
+  padding: 50px 5%;
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* INFO */
+.contact-info h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.contact-detail span {
+  font-size: 0.9rem;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.contact-detail p {
+  margin-bottom: 15px;
+}
+
+/* FORM */
+.contact-form {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.contact-form button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* ================= DESKTOP ================= */
+@media (min-width: 992px) {
+  .contact-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .contact-info {
+    flex: 1;
+  }
+
+  .contact-form {
+    flex: 1;
+  }
+}
+
+/* ================= MOBILE MENU ================= */
 @media (max-width: 992px) {
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%; /* Sembunyi di kanan luar layar */
-    width: 280px; /* Beri lebar yang pasti */
+    right: -100%;
+    width: 260px;
     height: 100vh;
-    background: #1a1d21; /* Warna solid agar tidak transparan */
-    display: flex;
+    background: #1a1d21;
     flex-direction: column;
-    padding: 100px 40px; /* Beri ruang agar tidak mentok ke atas */
+    padding: 100px 40px;
     gap: 20px;
-    /* Quat Out: Halus dan profesional */
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 999; /* Pastikan di bawah ikon hamburger (1001) tapi di atas body */
+    transition: 0.4s ease;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   }
 
-  /* LOGIKA UTAMA: Jika checkbox dicentang, pindahkan menu ke kanan: 0 */
   .menu-checkbox:checked ~ .nav-links {
-    right: 0 !important; /* Gunakan !important jika ada bentrokan style lain */
+    right: 0;
   }
 
-  /* Menampilkan hamburger di atas menu saat terbuka */
   .hamburger {
     display: flex;
-    z-index: 1001; /* Harus paling tinggi agar tetap bisa diklik untuk menutup */
   }
 }
